@@ -4,40 +4,55 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed = 5f; // Velocidad del personaje
-    public Vector2 direction; // Dirección del movimiento
+    public float speed = 5f;
+    private Vector2 direction; // Ahora es privada porque no necesitamos verla en el inspector
     
-    private Rigidbody2D rb; // Referencia al componente Rigidbody2D
+    private Rigidbody2D rb;
+    private Animator animator; // Referencia al componente Animator
 
     void Start()
     {
-        // Obtenemos el componente RigidBody2D que tiene el jugador
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>(); // Obtenemos el Animator al iniciar
     }
 
     void Update()
     {
-        // Llamamos a la función que gestiona los inputs en cada frame
         Movement();
+        Animate(); // Nueva función para gestionar las animaciones
     }
 
     void FixedUpdate()
     {
-        // Aplicamos la velocidad al cuerpo físico en función de la dirección y la velocidad
         rb.linearVelocity = direction * speed;
     }
 
     void Movement()
     {
-        // Capturamos los ejes horizontal y vertical (Teclas WASD / Flechas)
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
 
-        // Asignamos los valores al vector de dirección y lo normalizamos
-        // La normalización evita que el personaje vaya más rápido al moverse en diagonal
         direction = new Vector2(x, y).normalized;
     }
-}
 
+    void Animate()
+    {
+        
+        if (direction.magnitude !=  0) 
+        {
+            // Pasamos los valores de dirección al Blend Tree del Animator
+            animator.SetFloat("horizontal", direction.x);
+            animator.SetFloat("vertical", direction.y);
+            
+            // Reproducimos la animación de correr (el Blend Tree)
+            animator.Play("Run");
+        }
+        else 
+        {
+            // Si está quieto, reproducimos la animación de Idle (parado)
+            animator.Play("Idle");
+        }
+    }
+}
 
     
