@@ -1,10 +1,9 @@
 using UnityEngine;
-
 public class ProjectileControl : MonoBehaviour
 {
     [Header("Configuración de Movimiento")]
-    public float rotationSpeed = 500f; // Qué tan rápido gira
-    public float maxDistance = 10f;    // Distancia máxima antes de destruirse
+    public float rotationSpeed = 2000f; // Qué tan rápido gira
+    public float maxDistance = 7f;    // Distancia máxima antes de destruirse
     
     private Vector3 startPosition;
 

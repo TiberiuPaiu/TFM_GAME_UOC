@@ -180,4 +180,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileControl
   rotationSpeed: 2000
-  maxDistance: 10
+  maxDistance: 7
