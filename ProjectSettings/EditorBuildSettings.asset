@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/SelecionPersonaje.unity
     guid: 1ce40e3e89c425d41a505e5bcd49da10
   - enabled: 1
+    path: Assets/Scenes/Carga.unity
+    guid: 1151801ae0eb0784c905c92d82e3c074
+  - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   m_configObjects:
