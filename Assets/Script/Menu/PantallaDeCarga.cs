@@ -7,16 +7,17 @@ public class PantallaDeCarga : MonoBehaviour
 {
     public TextMeshProUGUI textoCuentaAtras;
     public TextMeshProUGUI textoNivel;
-    public int level;
+
 
     void Start()
     {
+        Debug.Log("Nivel actual escena 2 - " + GameManager.Instance.levelActual); 
         StartCoroutine(CuentaAtras());
     }
 
     IEnumerator CuentaAtras()
     {
-        textoNivel.text = "Level  - " + level;
+        textoNivel.text = "Level  - " + GameManager.Instance.levelActual;
         for (int i = 3; i > 0; i--)
         {
             textoCuentaAtras.text = i.ToString();

@@ -51,13 +51,13 @@ public class SelectorPersonajes : MonoBehaviour
 
     public void IrAJugar()
     {
-        // Aquí puedes guardar el nombre para usarlo en la siguiente escena
-        UnityEngine.SceneManagement.SceneManager.LoadScene(2);
+        // Carga la escena de carga
+        SceneManager.LoadScene(2);
     }
 
     public void IrATras()
     {
         // Carga la escena 1. 
-         UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+         SceneManager.LoadScene(0);
     }
 }

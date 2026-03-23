@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class PlayerMovement : MonoBehaviour
 {
     public float speed = 5f;
@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        Debug.Log("Nivel actual escena 3 - " + GameManager.Instance.levelActual); 
     }
 
     void Update()
@@ -84,6 +85,9 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("vertical", attackDir.y);
         
         animator.Play("Attack");
+
+        SiguienteNivel();
+        
     }
 
     void ResetAttack()
@@ -101,5 +105,12 @@ public class PlayerMovement : MonoBehaviour
         
         Rigidbody2D arrowRb = arrow.GetComponent<Rigidbody2D>();
         arrowRb.linearVelocity = dir * arrowSpeed; 
+    }
+
+
+    public void SiguienteNivel()
+    {
+        GameManager.Instance.levelActual++; 
+        SceneManager.LoadScene(2); 
     }
 }
