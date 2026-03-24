@@ -11,7 +11,7 @@ public class PantallaDeCarga : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("Nivel actual escena 2 - " + GameManager.Instance.levelActual); 
+        //Debug.Log("Nivel actual escena 2 - " + GameManager.Instance.levelActual); 
         StartCoroutine(CuentaAtras());
     }
 

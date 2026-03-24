@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        Debug.Log("Nivel actual escena 3 - " + GameManager.Instance.levelActual); 
+        //Debug.Log("Nivel actual escena 3 - " + GameManager.Instance.levelActual); 
     }
 
     void Update()
@@ -86,7 +86,7 @@ public class PlayerMovement : MonoBehaviour
         
         animator.Play("Attack");
 
-        SiguienteNivel();
+        //SiguienteNivel();
         
     }
 
