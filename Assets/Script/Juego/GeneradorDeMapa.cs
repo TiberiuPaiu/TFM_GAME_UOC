@@ -11,6 +11,16 @@ public class GeneradorDeMapa : MonoBehaviour
     public GameObject[] trampa;    // Tu GameObject trampa con la animación y el  script de daño 
     [Header("Lista de obstaculo a utilizar para cada nivel")]
     public GameObject[] obstaculo; // Tu GameObject de muro
+    [Header("Objecto de enemigos")]
+    public GameObject enemigos_mele;
+
+    public GameObject enemigos_rango;
+
+    public GameObject boss;
+    public Transform player;
+
+
+
 
     [Header("Dimensiones y Ruido")]
     public int ancho = 40;
@@ -26,6 +36,7 @@ public class GeneradorDeMapa : MonoBehaviour
 
         ConfigurarTilemap();
         GenerarMapa();
+
     }
 
     void ConfigurarTilemap() {
@@ -44,9 +55,30 @@ public class GeneradorDeMapa : MonoBehaviour
     public void GenerarMapa() {
         //  Limpiamos todo lo anterior
         lipiarMapa();
+        int level = GameManager.Instance.levelActual - 1;
         // Segun el nivel actual, se genera el mapa con los sprites y prefabs correspondientes
-        crearMapa(terreno[GameManager.Instance.levelActual - 1], obstaculo[GameManager.Instance.levelActual - 1], trampa[GameManager.Instance.levelActual - 1]);
-        
+        crearMapa(terreno[level], obstaculo[level], trampa[level]);
+
+        switch (level)
+        {
+            case 0:
+                GenerarEnemigos(enemigos_mele, 20);
+                break;
+            case 1:
+                GenerarEnemigos(enemigos_mele, 20);
+                GenerarEnemigos(enemigos_rango, 4);
+                break;
+            case 2:
+                GenerarEnemigos(enemigos_mele, 25);
+                GenerarEnemigos(enemigos_rango, 8);
+                break;
+            case 3:
+                GenerarJefe();
+                break;
+
+        }
+
+
     }
 
     void lipiarMapa() {
@@ -97,6 +129,13 @@ public class GeneradorDeMapa : MonoBehaviour
                     }
                     else
                     {
+                        //  Evitar que trapas salgan cerca del jugador
+                        if (CercaDelPlayer(posCentro))
+                        {
+                            tilemap.SetTile(new Vector3Int(posWorldX, posWorldY, 0), tileSuelo);
+
+                        }
+
                         // Pintar el tile de trapa en el Tilemap en la posición del mundo
                         Instanciar(trampa, posCentro);
                     }
@@ -114,6 +153,52 @@ public class GeneradorDeMapa : MonoBehaviour
         }
     }
 
+
+    void GenerarEnemigos(GameObject enemigo, int cantidad)
+    {
+       
+        int generados = 0;
+        int intentos = 0;
+
+        while (generados < cantidad && intentos < cantidad * 10)
+        {
+            intentos++;
+
+            int x = Random.Range(-ancho / 2, ancho / 2);
+            int y = Random.Range(-alto / 2, alto / 2);
+
+            Vector3 pos = new Vector3(x + 0.5f, y + 0.5f, 0);
+
+            // evitar bordes
+            bool esBorde = (x == -ancho / 2 || x == ancho / 2 - 1 ||
+                            y == -alto / 2 || y == alto / 2 - 1);
+
+            if (esBorde) continue;
+
+            //  Evitar que enemigos salgan cerca del jugador
+            if (CercaDelPlayer(pos)) continue;
+
+            GameObject enemigoPrefab = enemigo;
+
+            Instantiate(enemigoPrefab, pos, Quaternion.identity, contenedorDeObjetos);
+
+            generados++;
+        }
+    }
+
+    bool CercaDelPlayer(Vector3 pos)
+    {
+        return Vector3.Distance(pos, player.position) < 3f;
+    }
+
+
+    void GenerarJefe()
+    {
+        Vector3 centro = Vector3.zero;
+        Instantiate(boss, centro, Quaternion.identity, contenedorDeObjetos);
+
+
+    }
 
 
 
