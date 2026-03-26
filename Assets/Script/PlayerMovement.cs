@@ -53,6 +53,10 @@ public class PlayerMovement : MonoBehaviour
         {
             Attack();
         }
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            SiguienteNivel();
+        }
     }
 
     void Animate()

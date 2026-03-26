@@ -3,13 +3,14 @@ using UnityEngine.Tilemaps;
 
 public class GeneradorDeMapa : MonoBehaviour
 {
-    [Header("Referencias")]
+   
     public Tilemap tilemap;
-    public Sprite terreno; 
-
-    [Header("Prefabs (Capa de Objetos)")]
-    public GameObject trampa;    // Tu GameObject con script de daño o animación
-    public GameObject obstaculo; // Tu GameObject de muro o piedra
+    [Header("Lista de suelo a utilizar para cada nivel")]
+    public Sprite[] terreno; // Sprite que vamos a pitar para el suelo 
+    [Header("Lista de trampa a utilizar para cada nivel")]
+    public GameObject[] trampa;    // Tu GameObject trampa con la animación y el  script de daño 
+    [Header("Lista de obstaculo a utilizar para cada nivel")]
+    public GameObject[] obstaculo; // Tu GameObject de muro
 
     [Header("Dimensiones y Ruido")]
     public int ancho = 40;
@@ -41,12 +42,22 @@ public class GeneradorDeMapa : MonoBehaviour
     }
 
     public void GenerarMapa() {
-        // 1. Limpiamos todo lo anterior
+        //  Limpiamos todo lo anterior
+        lipiarMapa();
+        // Segun el nivel actual, se genera el mapa con los sprites y prefabs correspondientes
+        crearMapa(terreno[GameManager.Instance.levelActual - 1], obstaculo[GameManager.Instance.levelActual - 1], trampa[GameManager.Instance.levelActual - 1]);
+        
+    }
+
+    void lipiarMapa() {
         tilemap.ClearAllTiles();
         foreach (Transform hijo in contenedorDeObjetos) {
             Destroy(hijo.gameObject);
         }
+    }
 
+    void crearMapa(Sprite terreno, GameObject obstaculo, GameObject trampa)
+    {
         float seedX = Random.Range(-99999f, 99999f);
         float seedY = Random.Range(-99999f, 99999f);
 
@@ -57,27 +68,36 @@ public class GeneradorDeMapa : MonoBehaviour
         Tile tileSuelo = ScriptableObject.CreateInstance<Tile>();
         tileSuelo.sprite = terreno;
 
-        for (int x = 0; x < ancho; x++) {
-            for (int y = 0; y < alto; y++) {
+        for (int x = 0; x < ancho; x++)
+        {
+            for (int y = 0; y < alto; y++)
+            {
                 int posWorldX = inicioX + x;
                 int posWorldY = inicioY + y;
 
                 // Posición central para el GameObject (Tilemap usa esquinas, GameObject usa centros)
                 Vector3 posCentro = new Vector3(posWorldX + 0.5f, posWorldY + 0.5f, 0);
 
-                // 2. Pintar siempre suelo debajo
-                tilemap.SetTile(new Vector3Int(posWorldX, posWorldY, 0), tileSuelo);
 
-                // 3. Lógica de Bordes y Ruido
+                // Lógica 
                 bool esBorde = (x == 0 || x == ancho - 1 || y == 0 || y == alto - 1);
                 float ruido = Mathf.PerlinNoise((posWorldX + seedX) * escala, (posWorldY + seedY) * escala);
 
-                if (esBorde) {
+                if (esBorde)
+                {
+                    // Pintar el tile del borde en el Tilemap en la posición del mundo
                     Instanciar(obstaculo, posCentro);
-                } else {
-                    if (ruido > 0.75f) {
-                        Instanciar(obstaculo, posCentro);
-                    } else if (ruido > 0.6f) {
+                }
+                else
+                {
+                    if (ruido < 0.65f)
+                    {
+                        // Pintar el tile de suelo en el Tilemap en la posición del mundo
+                        tilemap.SetTile(new Vector3Int(posWorldX, posWorldY, 0), tileSuelo);
+                    }
+                    else
+                    {
+                        // Pintar el tile de trapa en el Tilemap en la posición del mundo
                         Instanciar(trampa, posCentro);
                     }
                 }
@@ -85,10 +105,16 @@ public class GeneradorDeMapa : MonoBehaviour
         }
     }
 
-    void Instanciar(GameObject prefab, Vector3 posicion) {
-        if (prefab != null) {
+    void Instanciar(GameObject prefab, Vector3 posicion)
+    {
+        if (prefab != null)
+        {
             GameObject nuevoObj = Instantiate(prefab, posicion, Quaternion.identity);
             nuevoObj.transform.parent = contenedorDeObjetos;
         }
     }
+
+
+
+
 }
