@@ -177,6 +177,8 @@ public class GeneradorDeMapa : MonoBehaviour
 
             //  Evitar que enemigos salgan cerca del jugador
             if (CercaDelPlayer(pos)) continue;
+            //  Evitar que enemigos salgan encima de una trapa o cerca de ella  
+            //if (EstaOcupado(pos)) continue;
 
             GameObject enemigoPrefab = enemigo;
 
