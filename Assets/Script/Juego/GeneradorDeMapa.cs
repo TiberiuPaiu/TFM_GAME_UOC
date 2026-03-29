@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using System.Collections.Generic;
+
 
 public class GeneradorDeMapa : MonoBehaviour
 {
@@ -28,6 +30,7 @@ public class GeneradorDeMapa : MonoBehaviour
     public float escala = 0.1f; 
 
     private Transform contenedorDeObjetos;
+    private List<GameObject> trampasInstanciadas = new List<GameObject>();
 
     void Start() {
         // Creamos un objeto para organizar los GameObjects en la jerarquía
@@ -138,6 +141,8 @@ public class GeneradorDeMapa : MonoBehaviour
 
                         // Pintar el tile de trapa en el Tilemap en la posición del mundo
                         Instanciar(trampa, posCentro);
+                        GameObject t = Instantiate(trampa, posCentro, Quaternion.identity, contenedorDeObjetos);
+                        trampasInstanciadas.Add(t);
                     }
                 }
             }
@@ -178,7 +183,7 @@ public class GeneradorDeMapa : MonoBehaviour
             //  Evitar que enemigos salgan cerca del jugador
             if (CercaDelPlayer(pos)) continue;
             //  Evitar que enemigos salgan encima de una trapa o cerca de ella  
-            //if (EstaOcupado(pos)) continue;
+            if (EstaOcupado(pos) ) continue;
 
             GameObject enemigoPrefab = enemigo;
 
@@ -191,6 +196,17 @@ public class GeneradorDeMapa : MonoBehaviour
     bool CercaDelPlayer(Vector3 pos)
     {
         return Vector3.Distance(pos, player.position) < 3f;
+    }
+
+
+    bool EstaOcupado(Vector3 pos)
+    {
+        foreach (GameObject t in trampasInstanciadas)
+        {
+            if (Vector3.Distance(pos, t.transform.position) < 3f)
+                return true;
+        }
+        return false;
     }
 
 

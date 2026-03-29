@@ -6,7 +6,7 @@ public class Trampas : MonoBehaviour
 {
     public Sprite trapOn;      // Imagen de pinchos fuera
     public Sprite trapOff;     // Imagen de trampa cerrada
-    public float trapTime = 1f; // Tiempo entre cambios (3 segundo)
+    public float trapTime = 3f; // Tiempo entre cambios (3 segundo)
     public bool trapActive;        // Estado inicial
 
     private SpriteRenderer sr;
@@ -32,6 +32,6 @@ public class Trampas : MonoBehaviour
              sr.sprite = trapOff;
              coll.enabled = false; 
         }
-      
+   
     }
 }

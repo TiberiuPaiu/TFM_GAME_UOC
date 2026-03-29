@@ -181,5 +181,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Trampas
   trapOn: {fileID: 1771895151, guid: 040f16387631ebc459984fe87b21f678, type: 3}
   trapOff: {fileID: 1654008994, guid: 040f16387631ebc459984fe87b21f678, type: 3}
-  trapTime: 1
+  trapTime: 2
   trapActive: 0
