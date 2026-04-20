@@ -13,12 +13,12 @@ GameObject:
   - component: {fileID: 8559509536794194864}
   - component: {fileID: 4142869634753206469}
   - component: {fileID: 2244848689132134298}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: trampa
-  m_TagString: Untagged
+  m_TagString: Trampa
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &296822578432659834
 Transform:
@@ -155,7 +155,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.031082153}
+  m_Offset: {x: 0.013000488, y: 0.03225708}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -165,7 +165,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.7512207, y: 0.69454956}
+  m_Size: {x: 0.649292, y: 0.6116333}
   m_EdgeRadius: 0
 --- !u!114 &2244848689132134298
 MonoBehaviour:
@@ -179,7 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5472fb5c2e5e2840bd1351a2ad78e50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Trampas
-  trapOn: {fileID: 1771895151, guid: 040f16387631ebc459984fe87b21f678, type: 3}
-  trapOff: {fileID: 1654008994, guid: 040f16387631ebc459984fe87b21f678, type: 3}
+  trapOn: {fileID: 1654008994, guid: 040f16387631ebc459984fe87b21f678, type: 3}
+  trapOff: {fileID: 1771895151, guid: 040f16387631ebc459984fe87b21f678, type: 3}
   trapTime: 2
   trapActive: 0

@@ -28,10 +28,10 @@ public class Trampas : MonoBehaviour
 
         if (trapActive)
         {
-            sr.sprite = trapOff;
+            sr.sprite = trapOn;
             coll.enabled = true; 
         }else{
-             sr.sprite = trapOn;
+             sr.sprite = trapOff;
              coll.enabled = false; 
         }
    
@@ -40,7 +40,6 @@ public class Trampas : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("TrapActive: " + trapActive);
 
         if (collision.CompareTag("Player") && trapActive)
         {

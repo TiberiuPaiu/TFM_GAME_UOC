@@ -6,6 +6,9 @@ public class ProjectileControl : MonoBehaviour
     public float maxDistance = 7f;    // Distancia máxima antes de destruirse
     
     private Vector3 startPosition;
+    [Header("Configuración del daño que el proyectil inflige a los enemigos ")]
+    public int damage = 1; // Daño que el proyectil inflige a los enemigos
+    private bool hasHit = false;
 
     void Start()
     {
@@ -30,11 +33,23 @@ public class ProjectileControl : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Si choca con algo (suelo, enemigo, etc.)
-        if (collision.CompareTag("Enemy") || collision.CompareTag("World"))
+        if (collision.CompareTag("Enemy"))
+        {
+            DumbEnemy enemy = collision.GetComponent<DumbEnemy>();
+
+            if (enemy != null)
+            {
+                enemy.TakeDamage(damage);
+            }
+
+            DestroyProjectile();
+        }
+
+        if (collision.CompareTag("World"))
         {
             DestroyProjectile();
         }
+
     }
 
     void DestroyProjectile()
