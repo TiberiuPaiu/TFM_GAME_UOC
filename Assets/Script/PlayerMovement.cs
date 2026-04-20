@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed = 5f;
+    public float speed = 2f;
     public float arrowSpeed = 10f; 
     private Vector2 direction;
     
