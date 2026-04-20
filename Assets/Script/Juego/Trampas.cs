@@ -12,6 +12,8 @@ public class Trampas : MonoBehaviour
     private SpriteRenderer sr;
     private BoxCollider2D coll;
 
+    private int daño = 10; // Daño que hará la trampa
+
     void Awake()
     {
         sr = GetComponent<SpriteRenderer>();
@@ -26,12 +28,30 @@ public class Trampas : MonoBehaviour
 
         if (trapActive)
         {
-            sr.sprite = trapOn;
+            sr.sprite = trapOff;
             coll.enabled = true; 
         }else{
-             sr.sprite = trapOff;
+             sr.sprite = trapOn;
              coll.enabled = false; 
         }
    
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("TrapActive: " + trapActive);
+
+        if (collision.CompareTag("Player") && trapActive)
+        {
+            HacerDanio();
+        }
+    }
+
+    void HacerDanio() { 
+        if (GameManager.Instance != null) { 
+            GameManager.Instance.vidaJugador -= daño; 
+            //Debug.Log("¡PINCHADO! Vida: " + GameManager.Instance.vidaJugador); 
+        } 
     }
 }
