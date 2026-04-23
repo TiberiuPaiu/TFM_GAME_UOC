@@ -33,8 +33,12 @@ public class ProjectileControl : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (hasHit) return; //  evita doble impacto
+
         if (collision.CompareTag("Enemy"))
         {
+            hasHit = true; //  bloquear inmediato
+
             DumbEnemy enemy = collision.GetComponent<DumbEnemy>();
 
             if (enemy != null)

@@ -59,21 +59,23 @@ public class GeneradorDeMapa : MonoBehaviour
         //  Limpiamos todo lo anterior
         lipiarMapa();
         int level = GameManager.Instance.levelActual - 1;
+        var configActual = GameManager.Instance.GetLevel(level);
+
         // Segun el nivel actual, se genera el mapa con los sprites y prefabs correspondientes
         crearMapa(terreno[level], obstaculo[level], trampa[level]);
 
         switch (level)
         {
             case 0:
-                GenerarEnemigos(enemigos_mele, 20);
+                GenerarEnemigos(enemigos_mele, configActual.melee);
                 break;
             case 1:
-                GenerarEnemigos(enemigos_mele, 20);
-                GenerarEnemigos(enemigos_rango, 4);
+                GenerarEnemigos(enemigos_mele, configActual.melee);
+                GenerarEnemigos(enemigos_rango, configActual.rango);
                 break;
             case 2:
-                GenerarEnemigos(enemigos_mele, 25);
-                GenerarEnemigos(enemigos_rango, 8);
+                GenerarEnemigos(enemigos_mele, configActual.melee);
+                GenerarEnemigos(enemigos_rango, configActual.rango);
                 break;
             case 3:
                 GenerarJefe();

@@ -1,0 +1,24 @@
+{
+  "levels": [
+    {
+      "melee": 20,
+      "rango": 0,
+      "boss": false
+    },
+    {
+      "melee": 20,
+      "rango": 4,
+      "boss": false
+    },
+    {
+      "melee": 25,
+      "rango": 8,
+      "boss": false
+    },
+    {
+      "melee": 0,
+      "rango": 0,
+      "boss": true
+    }
+  ]
+}

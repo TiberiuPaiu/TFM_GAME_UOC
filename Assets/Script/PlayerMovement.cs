@@ -55,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            SiguienteNivel();
+            AvasarPorComadosDeNivel();
         }
     }
 
@@ -112,9 +112,12 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    public void SiguienteNivel()
+    public void AvasarPorComadosDeNivel()
     {
-        GameManager.Instance.levelActual++; 
+        GameManager.Instance.levelActual++;
+        GameManager.Instance.cantidadEnemigosEliminados = 0;
+        GameManager.Instance.cantidadEnemigos = GameManager.Instance.baseDeDatosNiveles.levels[GameManager.Instance.levelActual - 1].melee + GameManager.Instance.baseDeDatosNiveles.levels[GameManager.Instance.levelActual - 1].rango;
+
         SceneManager.LoadScene(2); 
     }
 }
