@@ -11,6 +11,7 @@ public class Trampas : MonoBehaviour
 
     private SpriteRenderer sr;
     private BoxCollider2D coll;
+     
 
     private int daño = 10; // Daño que hará la trampa
 
@@ -43,14 +44,13 @@ public class Trampas : MonoBehaviour
 
         if (collision.CompareTag("Player") && trapActive)
         {
-            HacerDanio();
+            PlayerMovement player = collision.GetComponent<PlayerMovement>();
+            if (player != null)
+            {
+                player.TakeDamage(daño);
+            }
         }
     }
 
-    void HacerDanio() { 
-        if (GameManager.Instance != null) { 
-            GameManager.Instance.vidaJugador -= daño; 
-            //Debug.Log("¡PINCHADO! Vida: " + GameManager.Instance.vidaJugador); 
-        } 
-    }
+    
 }

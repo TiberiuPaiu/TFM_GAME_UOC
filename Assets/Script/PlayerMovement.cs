@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
 public class PlayerMovement : MonoBehaviour
 {
     public float speed = 10f;
@@ -14,12 +15,21 @@ public class PlayerMovement : MonoBehaviour
     private bool isAttack;
 
     // Cambié arrowPrefab por proyectil para que coincida con tu variable de arriba
-    public GameObject proyectil; 
+    public GameObject proyectil;
+
+
+    [Header("Invencibilidad")]
+    public float invincibilityTime = 1.5f;
+    public float blinkTime = 0.1f;
+
+    private bool isInvincible = false;
+    private SpriteRenderer spriteRenderer;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         //Debug.Log("Nivel actual escena 3 - " + GameManager.Instance.levelActual); 
     }
 
@@ -119,5 +129,44 @@ public class PlayerMovement : MonoBehaviour
         GameManager.Instance.cantidadEnemigos = GameManager.Instance.baseDeDatosNiveles.levels[GameManager.Instance.levelActual - 1].melee + GameManager.Instance.baseDeDatosNiveles.levels[GameManager.Instance.levelActual - 1].rango;
 
         SceneManager.LoadScene(2); 
+    }
+
+
+    public void TakeDamage(int damage)
+    {
+        if (isInvincible) return;
+
+        GameManager.Instance.vidaJugador -= damage;
+
+        Debug.Log("Vida actual : " + GameManager.Instance.vidaJugador);
+
+        StartCoroutine(InvisibilityCoroutine());
+
+        if (GameManager.Instance.vidaJugador <= 0)
+        {
+            Debug.Log("Game o " );
+
+            //SceneManager.LoadScene(4);
+        }
+    }
+
+    IEnumerator InvisibilityCoroutine()
+    {
+        if (spriteRenderer == null) yield break;
+
+        isInvincible = true;
+
+        float timer = invincibilityTime;
+
+        while (timer > 0)
+        {
+            spriteRenderer.enabled = !spriteRenderer.enabled;
+
+            yield return new WaitForSeconds(blinkTime);
+            timer -= blinkTime;
+        }
+
+        spriteRenderer.enabled = true;
+        isInvincible = false;
     }
 }
