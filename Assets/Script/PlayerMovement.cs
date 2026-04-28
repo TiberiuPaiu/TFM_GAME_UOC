@@ -32,6 +32,8 @@ public class PlayerMovement : MonoBehaviour
 
     public int curacion = 5;
 
+    public GameObject textocura;
+
 
     void Start()
     {
@@ -227,10 +229,25 @@ public class PlayerMovement : MonoBehaviour
 
                 if (GameManager.Instance.vidaJugador > 100)
                     GameManager.Instance.vidaJugador = 100;
-
+                MostrarCuracionUI();
                 Destroy(collision.gameObject);
             }
         }
+    }
+
+
+    void MostrarCuracionUI()
+    {
+        StartCoroutine(MostrarCuracionCoroutine());
+    }
+
+    IEnumerator MostrarCuracionCoroutine()
+    {
+        textocura.SetActive(true);
+
+        yield return new WaitForSeconds(1f); // tiempo visible
+
+        textocura.SetActive(false);
     }
 
 }
