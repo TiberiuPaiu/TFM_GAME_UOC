@@ -10,6 +10,11 @@ public partial class DumbEnemy : MonoBehaviour
     private int dañoContacto = 5;
 
 
+    public GameObject corazonVida;
+    public float probabilidadCorazon = 20f;
+
+
+
 
     public void TakeDamage(int damage)
     {
@@ -33,6 +38,9 @@ public partial class DumbEnemy : MonoBehaviour
         GameManager.Instance.EnemyKilled();
         GameManager.Instance.ComprobarFinNivel();
 
+        //Debug.Log("dropsDeEnemigos = " + dropsDeEnemigos);
+
+        generarCorazon();
         //  lanzamos animación
         AnimationEnemyDead anim = GetComponentInChildren<AnimationEnemyDead>();
 
@@ -54,9 +62,19 @@ public partial class DumbEnemy : MonoBehaviour
 
             if (player != null)
             {
-                
+
                 player.TakeDamage(dañoContacto, transform.position, "Enemy");
             }
+        }
+    }
+
+    public void generarCorazon()
+    {
+        float random = Random.Range(0f, 100f);
+
+        if (random <= probabilidadCorazon)
+        {
+            Instantiate(corazonVida, transform.position , Quaternion.identity);
         }
     }
 
