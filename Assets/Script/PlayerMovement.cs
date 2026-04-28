@@ -25,6 +25,12 @@ public class PlayerMovement : MonoBehaviour
     private bool isInvincible = false;
     private SpriteRenderer spriteRenderer;
 
+    public float knockbackStrength = 2f;
+    public float knockbackTime = 0.2f;
+
+    private bool isKnocked;
+
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -39,12 +45,18 @@ public class PlayerMovement : MonoBehaviour
         Animate(); 
     }
 
+
     void FixedUpdate()
     {
-        // Si está atacando, el personaje no debería deslizarse
-        if (isAttack) {
+        if (isKnocked)
+            return;
+
+        if (isAttack)
+        {
             rb.linearVelocity = Vector2.zero;
-        } else {
+        }
+        else
+        {
             rb.linearVelocity = direction * speed;
         }
     }
@@ -132,7 +144,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, Vector3 attackerPosition , string controlFuncion)
     {
         if (isInvincible) return;
 
@@ -140,12 +152,22 @@ public class PlayerMovement : MonoBehaviour
 
         Debug.Log("Vida actual : " + GameManager.Instance.vidaJugador);
 
-        StartCoroutine(InvisibilityCoroutine());
+        // Hacer el  knockback si NO es trampa
+        if (controlFuncion == "Enemy")
+        {
+            StartCoroutine(KnockbackCoroutine(attackerPosition));
+            StartCoroutine(InvisibilityCoroutine());
+        }
+        else if (controlFuncion == "Trap")
+        {
+            StartCoroutine(InvisibilityCoroutine());
+        }
+
+
 
         if (GameManager.Instance.vidaJugador <= 0)
         {
             Debug.Log("Game o " );
-
             //SceneManager.LoadScene(4);
         }
     }
@@ -169,4 +191,26 @@ public class PlayerMovement : MonoBehaviour
         spriteRenderer.enabled = true;
         isInvincible = false;
     }
+
+    IEnumerator KnockbackCoroutine(Vector3 attackerPosition)
+    {
+        isKnocked = true;
+
+        //Calcula la dirección real: desde el atacante hacia el jugado
+        Vector2 pushDirection = (transform.position - attackerPosition).normalized;
+        Debug.Log("pushDirection = " + pushDirection);
+        Debug.Log("transform.position = " + transform.position);
+        Debug.Log("attackerPosition = " + attackerPosition); 
+        // Calcular dirección y aplicar fuerza
+        rb.linearVelocity = pushDirection * knockbackStrength;
+
+
+        // Esperar el tiempo de duración del empuje
+        yield return new WaitForSeconds(knockbackTime);
+
+        // Detener al enemigo
+
+        isKnocked = false;
+    }
+
 }

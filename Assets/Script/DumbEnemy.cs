@@ -54,7 +54,8 @@ public partial class DumbEnemy : MonoBehaviour
 
             if (player != null)
             {
-                player.TakeDamage(dañoContacto);
+                
+                player.TakeDamage(dañoContacto, transform.position, "Enemy");
             }
         }
     }

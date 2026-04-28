@@ -47,7 +47,8 @@ public class Trampas : MonoBehaviour
             PlayerMovement player = collision.GetComponent<PlayerMovement>();
             if (player != null)
             {
-                player.TakeDamage(daño);
+               
+                player.TakeDamage(daño, Vector3.zero, "Trap");
             }
         }
     }
