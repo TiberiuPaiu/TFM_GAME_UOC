@@ -143,7 +143,7 @@ public class GeneradorDeMapa : MonoBehaviour
                         }
                         else
                         {
-                            // Si no se puede poner trampa → suelo
+                            // Si no se puede poner trampa suelo
                             tilemap.SetTile(new Vector3Int(posWorldX, posWorldY, 0), tileSuelo);
                         }
                     }
