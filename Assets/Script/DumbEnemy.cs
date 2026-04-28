@@ -7,7 +7,7 @@ public partial class DumbEnemy : MonoBehaviour
 
     private AnimationEnemyDead animationEnemyDead;
 
-    
+    private int dañoContacto = 5;
 
 
 
@@ -45,5 +45,19 @@ public partial class DumbEnemy : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            PlayerMovement player = collision.gameObject.GetComponent<PlayerMovement>();
+
+            if (player != null)
+            {
+                player.TakeDamage(dañoContacto);
+            }
+        }
+    }
+
 
 }
