@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
         {
             cantidadEnemigosEliminados = 0;
             levelActual++;
-            cantidadEnemigos = baseDeDatosNiveles.levels[levelActual-1].melee + baseDeDatosNiveles.levels[levelActual - 1].rango;
+            cantidadEnemigos = baseDeDatosNiveles.levels[levelActual-1].melee + baseDeDatosNiveles.levels[levelActual - 1].rango; 
             SceneManager.LoadScene(2);
         }
     }
@@ -63,6 +63,8 @@ public class GameManager : MonoBehaviour
 
         OnEnemyKilled?.Invoke(); //  usar  patron Observer para notificar
     }
+
+
 
 
 

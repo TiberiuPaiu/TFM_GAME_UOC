@@ -134,17 +134,18 @@ public class GeneradorDeMapa : MonoBehaviour
                     }
                     else
                     {
-                        //  Evitar que trapas salgan cerca del jugador
-                        if (CercaDelPlayer(posCentro))
+                        // Evitar que trampas salgan cerca del jugador
+                        if (!CercaDelPlayer(posCentro))
                         {
-                            tilemap.SetTile(new Vector3Int(posWorldX, posWorldY, 0), tileSuelo);
-
+                            // Pintar trampa
+                            GameObject t = Instantiate(trampa, posCentro, Quaternion.identity, contenedorDeObjetos);
+                            trampasInstanciadas.Add(t);
                         }
-
-                        // Pintar el tile de trapa en el Tilemap en la posición del mundo
-                        Instanciar(trampa, posCentro);
-                        GameObject t = Instantiate(trampa, posCentro, Quaternion.identity, contenedorDeObjetos);
-                        trampasInstanciadas.Add(t);
+                        else
+                        {
+                            // Si no se puede poner trampa → suelo
+                            tilemap.SetTile(new Vector3Int(posWorldX, posWorldY, 0), tileSuelo);
+                        }
                     }
                 }
             }
