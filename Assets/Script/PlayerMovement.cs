@@ -30,6 +30,8 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isKnocked;
 
+    public int curacion = 5;
+
 
     void Start()
     {
@@ -167,7 +169,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (GameManager.Instance.vidaJugador <= 0)
         {
-            Debug.Log("Game o " );
+            Debug.Log("Game over" );
             //SceneManager.LoadScene(4);
         }
     }
@@ -198,9 +200,9 @@ public class PlayerMovement : MonoBehaviour
 
         //Calcula la dirección real: desde el atacante hacia el jugado
         Vector2 pushDirection = (transform.position - attackerPosition).normalized;
-        Debug.Log("pushDirection = " + pushDirection);
-        Debug.Log("transform.position = " + transform.position);
-        Debug.Log("attackerPosition = " + attackerPosition); 
+        //Debug.Log("pushDirection = " + pushDirection);
+        //Debug.Log("transform.position = " + transform.position);
+        //Debug.Log("attackerPosition = " + attackerPosition); 
         // Calcular dirección y aplicar fuerza
         rb.linearVelocity = pushDirection * knockbackStrength;
 
@@ -211,6 +213,24 @@ public class PlayerMovement : MonoBehaviour
         // Detener al enemigo
 
         isKnocked = false;
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Cura"))
+        {
+            Debug.Log("estoy aqui ");
+            if (GameManager.Instance.vidaJugador < 100)
+            {
+                GameManager.Instance.vidaJugador += curacion;
+
+                if (GameManager.Instance.vidaJugador > 100)
+                    GameManager.Instance.vidaJugador = 100;
+
+                Destroy(collision.gameObject);
+            }
+        }
     }
 
 }
