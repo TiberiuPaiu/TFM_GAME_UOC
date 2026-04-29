@@ -232,7 +232,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0.0050049, y: -0.0099792}
-  m_SizeDelta: {x: 3840, y: 2160}
+  m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &30795477
 MonoBehaviour:
@@ -340,8 +340,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4284535027
-  m_fontColor: {r: 0.9529412, g: 0.8156863, b: 0.3764706, a: 1}
+    rgba: 4282353101
+  m_fontColor: {r: 0.8039216, g: 0.52156866, b: 0.24705882, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -459,10 +459,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 16
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -479,9 +479,9 @@ Canvas:
   m_GameObject: {fileID: 1050785236}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
+  m_RenderMode: 1
+  m_Camera: {fileID: 1819958578}
+  m_PlaneDistance: 16
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -549,8 +549,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1482, y: -600}
-  m_SizeDelta: {x: 640, y: 200}
+  m_AnchoredPosition: {x: 797.84, y: -318.077}
+  m_SizeDelta: {x: 280.31, y: 127.399}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1124064129
 MonoBehaviour:
@@ -709,7 +709,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.1923075
+  orthographic size: 6.75
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -754,8 +754,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.2D.Runtime::UnityEngine.Rendering.Universal.PixelPerfectCamera
   m_ComponentVersion: 1
   m_AssetsPPU: 16
-  m_RefResolutionX: 280
-  m_RefResolutionY: 100
+  m_RefResolutionX: 352
+  m_RefResolutionY: 192
   m_CropFrame: 0
   m_GridSnapping: 0
   m_FilterMode: 0
@@ -997,8 +997,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4284535027
-  m_fontColor: {r: 0.9529412, g: 0.8156863, b: 0.3764706, a: 1}
+    rgba: 4282353101
+  m_fontColor: {r: 0.8039216, g: 0.5215687, b: 0.2470588, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1104,8 +1104,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1484, y: -918}
-  m_SizeDelta: {x: 640, y: 200}
+  m_AnchoredPosition: {x: 797.84485, y: -463.7702}
+  m_SizeDelta: {x: 280.31, y: 128.46}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1974374922
 MonoBehaviour:

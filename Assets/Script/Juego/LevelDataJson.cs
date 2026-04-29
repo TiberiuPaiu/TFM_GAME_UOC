@@ -7,5 +7,7 @@ public class LevelDataJson
     public int melee;
     public int rango;
     public bool boss;
-}
 
+    public int ancho;
+    public int alto;
+}

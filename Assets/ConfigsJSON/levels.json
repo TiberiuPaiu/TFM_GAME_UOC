@@ -1,24 +1,40 @@
 {
   "levels": [
     {
-      "melee": 20,
+      "melee": 8,
       "rango": 0,
-      "boss": false
+      "boss": false,
+      "ancho": 24,
+      "alto": 14
     },
     {
       "melee": 20,
-      "rango": 4,
-      "boss": false
+      "rango": 14,
+      "boss": false,
+      "ancho": 72,
+      "alto": 42
     },
     {
-      "melee": 25,
-      "rango": 8,
-      "boss": false
+      "melee": 30,
+      "rango": 12,
+      "boss": false,
+      "ancho": 72,
+      "alto": 42
     },
     {
       "melee": 0,
       "rango": 0,
-      "boss": true
+      "boss": true,
+      "ancho": 24,
+      "alto": 14
+    },
+    {
+      "melee": 30,
+      "rango": 20,
+      "boss": false,
+      "ancho": 72,
+      "alto": 42
     }
+
   ]
 }

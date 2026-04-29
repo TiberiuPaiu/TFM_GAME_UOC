@@ -62,25 +62,32 @@ public class GeneradorDeMapa : MonoBehaviour
         var configActual = GameManager.Instance.GetLevel(level);
 
         // Segun el nivel actual, se genera el mapa con los sprites y prefabs correspondientes
-        crearMapa(terreno[level], obstaculo[level], trampa[level]);
+        Sprite terrenoActual = terreno[level % terreno.Length];
+        GameObject obstaculoActual = obstaculo[level % obstaculo.Length];
+        GameObject trampaActual = trampa[level % trampa.Length];
 
-        switch (level)
+        ancho = configActual.ancho;
+        alto = configActual.alto;
+
+        if (ancho <= 0) ancho = 24;
+        if (alto <= 0) alto = 14;
+
+
+        crearMapa(terrenoActual, obstaculoActual, trampaActual);
+
+        if (configActual.melee > 0)
         {
-            case 0:
-                GenerarEnemigos(enemigos_mele, configActual.melee);
-                break;
-            case 1:
-                GenerarEnemigos(enemigos_mele, configActual.melee);
-                GenerarEnemigos(enemigos_rango, configActual.rango);
-                break;
-            case 2:
-                GenerarEnemigos(enemigos_mele, configActual.melee);
-                GenerarEnemigos(enemigos_rango, configActual.rango);
-                break;
-            case 3:
-                GenerarJefe();
-                break;
+            GenerarEnemigos(enemigos_mele, configActual.melee);
+        }
 
+        if (configActual.rango > 0)
+        {
+            GenerarEnemigos(enemigos_rango, configActual.rango);
+        }
+
+        if (configActual.boss)
+        {
+            GenerarJefe();
         }
 
 
