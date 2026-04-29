@@ -43,6 +43,8 @@ public class GameManager : MonoBehaviour
 
         if (restantes == 0)
         {
+
+
             cantidadEnemigosEliminados = 0;
             levelActual++;
             cantidadEnemigos = baseDeDatosNiveles.levels[levelActual-1].melee + baseDeDatosNiveles.levels[levelActual - 1].rango; 

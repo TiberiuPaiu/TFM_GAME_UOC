@@ -12,6 +12,14 @@ public class PantallaDeCarga : MonoBehaviour
     void Start()
     {
         //Debug.Log("Nivel actual escena 2 - " + GameManager.Instance.levelActual); 
+
+        // comprobar si es el último nivel
+        var gm = GameManager.Instance;
+
+        if (gm.levelActual > gm.baseDeDatosNiveles.levels.Length)
+        {
+            SceneManager.LoadScene(5); // victoria
+        }
         StartCoroutine(CuentaAtras());
     }
 
