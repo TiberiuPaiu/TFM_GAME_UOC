@@ -171,8 +171,8 @@ public class PlayerMovement : MonoBehaviour
 
         if (GameManager.Instance.vidaJugador <= 0)
         {
-            Debug.Log("Game over" );
-            //SceneManager.LoadScene(4);
+            
+            SceneManager.LoadScene(4);
         }
     }
 

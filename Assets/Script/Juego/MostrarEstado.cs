@@ -31,7 +31,7 @@ public class MostrarEstado : MonoBehaviour
         else
         {
             tiempoRestante = 0;
-            //SceneManager.LoadScene(4);// Game Over 
+            SceneManager.LoadScene(4);// Game Over 
         }
 
         ActualizarReloj(tiempoRestante);
