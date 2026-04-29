@@ -43,10 +43,15 @@ public class GameManager : MonoBehaviour
 
         if (restantes == 0)
         {
-
-
             cantidadEnemigosEliminados = 0;
             levelActual++;
+            
+            if (levelActual > baseDeDatosNiveles.levels.Length)
+            {
+                SceneManager.LoadScene(5); // escena final
+                return; 
+            }
+
             cantidadEnemigos = baseDeDatosNiveles.levels[levelActual-1].melee + baseDeDatosNiveles.levels[levelActual - 1].rango; 
             SceneManager.LoadScene(2);
         }

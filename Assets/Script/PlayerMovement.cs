@@ -140,11 +140,23 @@ public class PlayerMovement : MonoBehaviour
 
     public void AvasarPorComadosDeNivel()
     {
-        GameManager.Instance.levelActual++;
-        GameManager.Instance.cantidadEnemigosEliminados = 0;
-        GameManager.Instance.cantidadEnemigos = GameManager.Instance.baseDeDatosNiveles.levels[GameManager.Instance.levelActual - 1].melee + GameManager.Instance.baseDeDatosNiveles.levels[GameManager.Instance.levelActual - 1].rango;
+        var gm = GameManager.Instance;
 
-        SceneManager.LoadScene(2); 
+        gm.levelActual++;
+
+            // comprobar antes de acceder escena final
+        if (gm.levelActual > gm.baseDeDatosNiveles.levels.Length)
+        {
+            SceneManager.LoadScene(5); 
+            return;
+        }
+
+        var levelData = gm.baseDeDatosNiveles.levels[gm.levelActual - 1];
+
+        gm.cantidadEnemigos = levelData.melee + levelData.rango;
+        gm.cantidadEnemigosEliminados = 0;
+
+        SceneManager.LoadScene(2);
     }
 
 

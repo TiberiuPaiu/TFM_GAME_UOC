@@ -14,7 +14,14 @@ public class ControladorCamara : MonoBehaviour
     {
         if (jugador == null) return;
 
-        var mapa = GameManager.Instance.GetLevel(GameManager.Instance.levelActual - 1);
+        var gm = GameManager.Instance;
+
+        // comprobar rango de nivel para evitar errores de acceso a la memoria de la array de niveles del json
+        if (gm.levelActual <= 0 || gm.levelActual > gm.baseDeDatosNiveles.levels.Length)
+            return;
+
+        var mapa = gm.GetLevel(gm.levelActual - 1);
+
         float anchoMapa = mapa.ancho;
         float altoMapa  = mapa.alto;
 

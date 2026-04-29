@@ -21,6 +21,7 @@ public class PantallaDeCarga : MonoBehaviour
             SceneManager.LoadScene(5); // victoria
         }
         StartCoroutine(CuentaAtras());
+
     }
 
     IEnumerator CuentaAtras()

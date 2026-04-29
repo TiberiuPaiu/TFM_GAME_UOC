@@ -38,6 +38,7 @@ public class GameOverController : MonoBehaviour
 
     public void Exit()
     {
+        Destroy(GameManager.Instance.gameObject);
         SceneManager.LoadScene(1);
     }
 

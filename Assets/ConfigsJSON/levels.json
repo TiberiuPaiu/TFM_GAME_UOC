@@ -29,12 +29,18 @@
       "alto": 14
     },
     {
-      "melee": 30,
-      "rango": 20,
+      "melee": 2,
+      "rango": 0,
       "boss": false,
-      "ancho": 72,
-      "alto": 42
+      "ancho": 24,
+      "alto": 14
+    },
+    {
+      "melee": 2,
+      "rango": 0,
+      "boss": false,
+      "ancho": 24,
+      "alto": 14
     }
-
   ]
 }
