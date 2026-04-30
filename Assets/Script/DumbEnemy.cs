@@ -54,7 +54,7 @@ public partial class DumbEnemy : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
@@ -62,7 +62,8 @@ public partial class DumbEnemy : MonoBehaviour
 
             if (player != null)
             {
-
+                // Solo hacemos daño si pasó el tiempo suficiente 
+                // El propio script del Player filtrará si es invulnerable o no
                 player.TakeDamage(dañoContacto, transform.position, "Enemy");
             }
         }
@@ -77,6 +78,8 @@ public partial class DumbEnemy : MonoBehaviour
             Instantiate(corazonVida, transform.position , Quaternion.identity);
         }
     }
+
+
 
 
 }
