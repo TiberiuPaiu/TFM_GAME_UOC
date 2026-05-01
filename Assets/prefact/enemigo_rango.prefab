@@ -142,6 +142,7 @@ GameObject:
   - component: {fileID: 2713373463107269231}
   - component: {fileID: 3336022151745722891}
   - component: {fileID: 5632261406405731784}
+  - component: {fileID: 6238232110772571107}
   m_Layer: 0
   m_Name: Enemigo_rango
   m_TagString: Enemy
@@ -158,7 +159,7 @@ Transform:
   m_GameObject: {fileID: 6529870106035746956}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3039.654, y: 1582.0619, z: 0}
+  m_LocalPosition: {x: 3036.37, y: 1580.16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -238,11 +239,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyRango
   corazonVida: {fileID: 4289458390142484203, guid: a069675d359ce514aab1fb6a0f460b85, type: 3}
   probabilidadCorazon: 20
-  vida_parametos: 2
+  vida_parametos: 0
   spriteRenderer: {fileID: 3003207814425764793}
   spritesPorNivel:
+  - {fileID: 4723107735738678597, guid: afdfdcac59c95e446b471679221079cc, type: 3}
   - {fileID: 4723107735738678597, guid: 3a94abb44bf6aaa499a0525016f9f153, type: 3}
   - {fileID: 4723107735738678597, guid: 40b187ce280257542a6b8d233af392a3, type: 3}
+  speed: 3
+  distanciaDeteccion: 10
+  distanciaAtaque: 5
+  distanciaMinima: 2.5
+  controladoresPorNivel:
+  - {fileID: 22100000, guid: ad204399a6688dd479617a7d15512bd9, type: 2}
+  - {fileID: 22100000, guid: 879c210204f5ea24fb1b550e874f5437, type: 2}
+  - {fileID: 22100000, guid: 51812d348176fef499f6d7523df583f6, type: 2}
+  proyectilPrefab: {fileID: 7676842779629691659, guid: 81747feb7bb883b448d9e812555956d0, type: 3}
+  tiempoEntreDisparos: 1.5
 --- !u!50 &2713373463107269231
 Rigidbody2D:
   serializedVersion: 5
@@ -251,14 +263,14 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6529870106035746956}
-  m_BodyType: 2
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -269,7 +281,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!70 &3336022151745722891
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -319,5 +331,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5df4624f72afc15438e44f2234c726d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DumbEnemy
-  corazonVida: {fileID: 0}
+  corazonVida: {fileID: 4289458390142484203, guid: a069675d359ce514aab1fb6a0f460b85, type: 3}
   probabilidadCorazon: 20
+--- !u!95 &6238232110772571107
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6529870106035746956}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bfc34211e0a25c645a7357f465333164, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

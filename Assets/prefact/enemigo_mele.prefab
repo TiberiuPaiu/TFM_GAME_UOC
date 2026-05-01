@@ -237,7 +237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d226537c293353c4ebb0c32b3675d92a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMele
-  corazonVida: {fileID: 0}
+  corazonVida: {fileID: 4289458390142484203, guid: a069675d359ce514aab1fb6a0f460b85, type: 3}
   probabilidadCorazon: 20
   vida_parametos: 5
   spriteRenderer: {fileID: 4974433122314567320}
@@ -328,7 +328,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5df4624f72afc15438e44f2234c726d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DumbEnemy
-  corazonVida: {fileID: 0}
+  corazonVida: {fileID: 4289458390142484203, guid: a069675d359ce514aab1fb6a0f460b85, type: 3}
   probabilidadCorazon: 20
 --- !u!95 &7890336234065210061
 Animator:
