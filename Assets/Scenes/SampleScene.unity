@@ -2710,24 +2710,28 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3940831447511657597}
     - target: {fileID: 799631397110374936, guid: 3c02cc3d9e05f0a4b9b494411cfafa5c, type: 3}
+      propertyPath: controladoresPorNivel.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 799631397110374936, guid: 3c02cc3d9e05f0a4b9b494411cfafa5c, type: 3}
       propertyPath: 'controladoresPorNivel.Array.data[0]'
       value: 
       objectReference: {fileID: 22100000, guid: ad204399a6688dd479617a7d15512bd9, type: 2}
     - target: {fileID: 799631397110374936, guid: 3c02cc3d9e05f0a4b9b494411cfafa5c, type: 3}
       propertyPath: 'controladoresPorNivel.Array.data[1]'
       value: 
-      objectReference: {fileID: 22100000, guid: 879c210204f5ea24fb1b550e874f5437, type: 2}
+      objectReference: {fileID: 22100000, guid: 51812d348176fef499f6d7523df583f6, type: 2}
     - target: {fileID: 799631397110374936, guid: 3c02cc3d9e05f0a4b9b494411cfafa5c, type: 3}
       propertyPath: 'controladoresPorNivel.Array.data[2]'
       value: 
-      objectReference: {fileID: 22100000, guid: 51812d348176fef499f6d7523df583f6, type: 2}
+      objectReference: {fileID: 22100000, guid: 879c210204f5ea24fb1b550e874f5437, type: 2}
     - target: {fileID: 823791342546964400, guid: 3c02cc3d9e05f0a4b9b494411cfafa5c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3036.37
+      value: 3035.92
       objectReference: {fileID: 0}
     - target: {fileID: 823791342546964400, guid: 3c02cc3d9e05f0a4b9b494411cfafa5c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1580.16
+      value: 1580.1
       objectReference: {fileID: 0}
     - target: {fileID: 823791342546964400, guid: 3c02cc3d9e05f0a4b9b494411cfafa5c, type: 3}
       propertyPath: m_LocalPosition.z

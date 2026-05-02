@@ -6,7 +6,9 @@
       "boss": false,
       "ancho": 24,
       "alto": 14,
-      "tiempo": 20
+      "tiempo": 20,
+      "tipoEnemigo":0
+
     },
     {
       "melee": 0,
@@ -14,7 +16,8 @@
       "boss": false,
       "ancho": 24,
       "alto": 14,
-      "tiempo": 30
+      "tiempo": 30,
+      "tipoEnemigo": 1
     },
     {
       "melee": 10,
@@ -22,7 +25,8 @@
       "boss": false,
       "ancho": 72,
       "alto": 42,
-      "tiempo": 90
+      "tiempo": 90,
+      "tipoEnemigo": 2
     },
     {
       "melee": 0,
@@ -36,17 +40,19 @@
       "melee": 12,
       "rango": 8,
       "boss": false,
-      "ancho": 24,
-      "alto": 14,
-      "tiempo": 120
+      "ancho": 72,
+      "alto": 42,
+      "tiempo": 120,
+      "tipoEnemigo": 0
     },
     {
       "melee": 15,
       "rango": 8,
       "boss": false,
-      "ancho": 24,
-      "alto": 14,
-      "tiempo": 60
+      "ancho": 72,
+      "alto": 42,
+      "tiempo": 60,
+      "tipoEnemigo": 1
     }
 
   ]

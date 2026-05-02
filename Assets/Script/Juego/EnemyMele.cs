@@ -33,14 +33,13 @@ public class EnemyMele : DumbEnemy
             player = obj.transform;
 
         // sprite por nivel
+
         int level = GameManager.Instance.levelActual - 1;
+        var data = GameManager.Instance.GetLevel(level);
+        int tipo = data.tipoEnemigo; 
 
-        if (level >= 0 && level < spritesPorNivel.Length)
-        {
-            spriteRenderer.sprite = spritesPorNivel[level];
-            animator.runtimeAnimatorController = controladoresPorNivel[level];
-
-        }     
+        spriteRenderer.sprite = spritesPorNivel[tipo % spritesPorNivel.Length];
+        animator.runtimeAnimatorController = controladoresPorNivel[tipo % controladoresPorNivel.Length];
     }
 
     void Update()

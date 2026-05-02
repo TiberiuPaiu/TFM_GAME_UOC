@@ -11,4 +11,5 @@ public class LevelDataJson
     public int ancho;
     public int alto;
     public int tiempo;
+    public int tipoEnemigo;
 }

@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
             cantidadEnemigosEliminados = 0;
             baseDeDatosNiveles = LevelDatabase.LoadFromJson();
             cantidadEnemigos = baseDeDatosNiveles.levels[0].melee + baseDeDatosNiveles.levels[0].rango;
+
         }
         else
         {
