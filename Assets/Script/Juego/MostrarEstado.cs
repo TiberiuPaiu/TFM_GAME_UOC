@@ -8,8 +8,8 @@ public class MostrarEstado : MonoBehaviour
 {
     public TextMeshProUGUI textoNivel;
     public TextMeshProUGUI textoTiempo;
-    private float tiempoRestante = 180f; // 3 minutos en segundos
-
+    //private float tiempoRestante = 180f;  // 3 minutos en segundos
+    private float tiempoRestante = 30f;
     public TextMeshProUGUI textoCantidadEnemigos;
     public TextMeshProUGUI textoCantidadEnemigosEliminados;
 
@@ -47,6 +47,15 @@ public class MostrarEstado : MonoBehaviour
 
         // Dar el formato deseado 00:00
         textoTiempo.text = string.Format("{0:00}:{1:00}", min, sec);
+
+        if (segundos <= 15f)
+        {
+            textoTiempo.color = Color.red; // Cambia el texto a rojo
+        }
+        else
+        {
+            textoTiempo.color = Color.black; // Color normal (asegúrate de poner el que usas)
+        }
     }
 
     void OnEnable()
