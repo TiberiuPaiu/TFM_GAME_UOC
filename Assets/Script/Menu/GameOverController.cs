@@ -11,12 +11,12 @@ public class GameOverController : MonoBehaviour
 
     void Start()
     {
-        
-        textoNivel.text = "Nivel alcanzado: " + GameManager.Instance.levelActual;
+       
+        textoNivel.text = "Level achieved: " + GameManager.Instance.levelActual;
 
-        //float tiempo = GameManager.Instance.tiempoTotal;
-        //textoTiempo.text = "Tiempo: " + FormatearTiempo(tiempo);
-
+       
+        float totalSeconds = GameManager.Instance.segundosObtenidos;
+        textoTiempo.text = "Total time: " + FormatearTiempo(totalSeconds);
         // Esperar y cambiar escena
         StartCoroutine(VolverAlMenu());
     }
@@ -24,7 +24,7 @@ public class GameOverController : MonoBehaviour
     System.Collections.IEnumerator VolverAlMenu()
     {
         yield return new WaitForSeconds(tiempoEspera);
-
+        Destroy(GameManager.Instance.gameObject);
         SceneManager.LoadScene(1); // escena de carga
     }
 

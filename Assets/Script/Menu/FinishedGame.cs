@@ -4,7 +4,7 @@ using TMPro;
 
 public class FinishedGame : MonoBehaviour
 {
-    public TextMeshProUGUI textoNivel;
+ 
     public TextMeshProUGUI textoTiempo;
 
     public float tiempoEspera = 8f;
@@ -12,9 +12,9 @@ public class FinishedGame : MonoBehaviour
     void Start()
     {
 
-        //textoNivel.text = "Nivel alcanzado: " + GameManager.Instance.levelActual;
+        //textoNivel.text = "Level achieved: " + GameManager.Instance.levelActual;
 
-
+        textoTiempo.text = "Gosegged time: " + GameManager.Instance.segundosObtenidos + " seconds";
         // Esperar y cambiar escena
         StartCoroutine(VolverAlMenu());
     }

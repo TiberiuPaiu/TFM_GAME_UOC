@@ -9,7 +9,7 @@ public class MostrarEstado : MonoBehaviour
     public TextMeshProUGUI textoNivel;
     public TextMeshProUGUI textoTiempo;
     //private float tiempoRestante = 180f;  // 3 minutos en segundos
-    private float tiempoRestante = 30f;
+    private float tiempoRestante;
     public TextMeshProUGUI textoCantidadEnemigos;
     public TextMeshProUGUI textoCantidadEnemigosEliminados;
 
@@ -18,6 +18,17 @@ public class MostrarEstado : MonoBehaviour
         textoNivel.text = "" + GameManager.Instance.levelActual;
         textoCantidadEnemigos.text = "" + GameManager.Instance.cantidadEnemigos;
         textoCantidadEnemigosEliminados.text = "" + GameManager.Instance.cantidadEnemigosEliminados;
+
+        var datosNivel = GameManager.Instance.GetLevel(GameManager.Instance.levelActual - 1);
+
+        if (datosNivel != null)
+        {
+            tiempoRestante = datosNivel.tiempo;
+        }
+        else
+        {
+            tiempoRestante = 60f;
+        }
 
         ActualizarReloj(tiempoRestante);
     }
@@ -62,11 +73,21 @@ public class MostrarEstado : MonoBehaviour
     {
         //GameManager.OnEnemyKilled -= ActualizarUI;
         GameManager.OnEnemyKilled += ActualizarUI;
+        GameManager.OnLevelCompleted += GuardarTiempo;
     }
 
     void OnDisable()
     {
         GameManager.OnEnemyKilled -= ActualizarUI;
+        GameManager.OnLevelCompleted -= GuardarTiempo;
+    }
+
+
+    void GuardarTiempo(float tiempo)
+    {
+        Debug.Log("Tiempo recibido: " + tiempo);
+
+        GameManager.Instance.segundosObtenidos += Mathf.FloorToInt(tiempo);
     }
 
     void ActualizarUI()

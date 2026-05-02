@@ -5,42 +5,49 @@
       "rango": 0,
       "boss": false,
       "ancho": 24,
-      "alto": 14
+      "alto": 14,
+      "tiempo": 20
     },
     {
       "melee": 0,
       "rango": 1,
       "boss": false,
       "ancho": 24,
-      "alto": 14
+      "alto": 14,
+      "tiempo": 30
     },
     {
       "melee": 10,
       "rango": 5,
       "boss": false,
       "ancho": 72,
-      "alto": 42
+      "alto": 42,
+      "tiempo": 90
     },
     {
       "melee": 0,
       "rango": 0,
       "boss": true,
       "ancho": 24,
-      "alto": 14
+      "alto": 14,
+      "tiempo": 120
     },
     {
       "melee": 12,
       "rango": 8,
       "boss": false,
       "ancho": 24,
-      "alto": 14
+      "alto": 14,
+      "tiempo": 120
     },
     {
       "melee": 15,
       "rango": 8,
       "boss": false,
       "ancho": 24,
-      "alto": 14
+      "alto": 14,
+      "tiempo": 60
     }
+
   ]
 }

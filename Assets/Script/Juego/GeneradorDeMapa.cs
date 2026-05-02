@@ -22,8 +22,6 @@ public class GeneradorDeMapa : MonoBehaviour
     public Transform player;
 
 
-
-
     [Header("Dimensiones y Ruido")]
     public int ancho = 40;
     public int alto = 40;

@@ -243,6 +243,8 @@ MonoBehaviour:
   vidaJugador: 0
   cantidadEnemigos: 0
   cantidadEnemigosEliminados: 0
+  segundos: 0
+  segundosObtenidos: 0
   baseDeDatosNiveles:
     levels: []
 --- !u!4 &68697934
@@ -812,8 +814,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f70883fa08f8a7c4880d930006fd0114, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FinishedGame
-  textoNivel: {fileID: 2048107174}
-  textoTiempo: {fileID: 0}
+  textoTiempo: {fileID: 2048107174}
   tiempoEspera: 8
 --- !u!1 &1671278759
 GameObject:
