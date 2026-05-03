@@ -20,7 +20,7 @@ public class BossFinal : DumbEnemy
     [Header("Ráfaga")]
     public int balasPorRafaga = 5;
     public float tiempoEntreBalas = 0.2f;
-    public float tiempoEntreRafagas = 3f;
+    public float tiempoEntreRafagas = 0.3f;
 
     private float nextAttack;
 
@@ -197,4 +197,5 @@ public class BossFinal : DumbEnemy
         yield return new WaitForSeconds(0.31f); // ajusta según tu animación
         isAttacking = false;
     }
+
 }

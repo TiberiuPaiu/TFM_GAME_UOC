@@ -31,7 +31,6 @@ public class GameManager : MonoBehaviour
             vidaJugador = 100;
             cantidadEnemigosEliminados = 0;
             baseDeDatosNiveles = LevelDatabase.LoadFromJson();
-
             cantidadEnemigos = baseDeDatosNiveles.levels[0].melee + baseDeDatosNiveles.levels[0].rango;
 
         }
@@ -45,8 +44,8 @@ public class GameManager : MonoBehaviour
     public void ComprobarFinNivel()
     {
         int restantes = cantidadEnemigos - cantidadEnemigosEliminados;
-
-        if (restantes == 0)
+        //Debug.Log("Restantes: " + restantes);
+        if (restantes <= 0 )
         {
             cantidadEnemigosEliminados = 0;
             levelActual++;
@@ -59,7 +58,14 @@ public class GameManager : MonoBehaviour
             }
 
 
-            cantidadEnemigos = baseDeDatosNiveles.levels[levelActual-1].melee + baseDeDatosNiveles.levels[levelActual - 1].rango; 
+            if (baseDeDatosNiveles.levels[levelActual - 1].boss)
+            {
+                cantidadEnemigos = 1;
+            }
+            else
+            {
+                cantidadEnemigos = baseDeDatosNiveles.levels[levelActual - 1].melee + baseDeDatosNiveles.levels[levelActual - 1].rango;
+            }
             SceneManager.LoadScene(2);
         }
     }
@@ -73,8 +79,9 @@ public class GameManager : MonoBehaviour
 
     public void EnemyKilled()
     {
-        cantidadEnemigosEliminados= cantidadEnemigosEliminados+1;
-
+        
+        cantidadEnemigosEliminados = cantidadEnemigosEliminados + 1;
+        //Debug.Log("ENEMIGO MUERTO: " + cantidadEnemigosEliminados);
         OnEnemyKilled?.Invoke(); //  usar  patron Observer para notificar
     }
 
