@@ -69,23 +69,26 @@ public class GeneradorDeMapa : MonoBehaviour
 
         if (ancho <= 0) ancho = 24;
         if (alto <= 0) alto = 14;
+        bool level_boss = configActual.boss;
 
-
-        crearMapa(terrenoActual, obstaculoActual, trampaActual);
+        crearMapa(terrenoActual, obstaculoActual, trampaActual, level_boss);
 
         if (configActual.melee > 0)
         {
+            PosicionarPlayerReset();
             GenerarEnemigos(enemigos_mele, configActual.melee);
         }
 
         if (configActual.rango > 0)
         {
+            PosicionarPlayerReset();
             GenerarEnemigos(enemigos_rango, configActual.rango);
         }
 
         if (configActual.boss)
         {
             GenerarJefe();
+            PosicionarPlayer();
         }
 
     }
@@ -97,13 +100,15 @@ public class GeneradorDeMapa : MonoBehaviour
         }
     }
 
-    void crearMapa(Sprite terreno, GameObject obstaculo, GameObject trampa)
+    void crearMapa(Sprite terreno, GameObject obstaculo, GameObject trampa , bool leve_boss)
     {
         float seedX = Random.Range(-99999f, 99999f);
         float seedY = Random.Range(-99999f, 99999f);
 
         int inicioX = -ancho / 2;
         int inicioY = -alto / 2;
+
+
 
         // Crear el Tile de terreno una sola vez en memoria
         Tile tileSuelo = ScriptableObject.CreateInstance<Tile>();
@@ -138,18 +143,37 @@ public class GeneradorDeMapa : MonoBehaviour
                     }
                     else
                     {
-                        // Evitar que trampas salgan cerca del jugador
-                        if (!CercaDelPlayer(posCentro))
+                        if (leve_boss)
                         {
-                            // Pintar trampa
-                            GameObject t = Instantiate(trampa, posCentro, Quaternion.identity, contenedorDeObjetos);
-                            trampasInstanciadas.Add(t);
+                            // Evitar que trampas salgan cerca del jugador
+                            if (!CercaDelPlayer(posCentro) && !CercaDelBoss(posCentro))
+                            {
+                                // Pintar trampa
+                                GameObject t = Instantiate(trampa, posCentro, Quaternion.identity, contenedorDeObjetos);
+                                trampasInstanciadas.Add(t);
+                            }
+
+                            else
+                            {
+                                // Si no se puede poner trampa suelo
+                                tilemap.SetTile(new Vector3Int(posWorldX, posWorldY, 0), tileSuelo);
+                            }
+                        }else{
+                            // Evitar que trampas salgan cerca del jugador
+                            if (!CercaDelPlayer(posCentro))
+                            {
+                                // Pintar trampa
+                                GameObject t = Instantiate(trampa, posCentro, Quaternion.identity, contenedorDeObjetos);
+                                trampasInstanciadas.Add(t);
+                            }
+
+                            else
+                            {
+                                // Si no se puede poner trampa suelo
+                                tilemap.SetTile(new Vector3Int(posWorldX, posWorldY, 0), tileSuelo);
+                            }
                         }
-                        else
-                        {
-                            // Si no se puede poner trampa suelo
-                            tilemap.SetTile(new Vector3Int(posWorldX, posWorldY, 0), tileSuelo);
-                        }
+                       
                     }
                 }
             }
@@ -172,7 +196,7 @@ public class GeneradorDeMapa : MonoBehaviour
         int generados = 0;
         int intentos = 0;
 
-        while (generados < cantidad && intentos < cantidad * 10)
+        while (generados < cantidad && intentos < cantidad * 100)
         {
             intentos++;
 
@@ -205,6 +229,11 @@ public class GeneradorDeMapa : MonoBehaviour
         return Vector3.Distance(pos, player.position) < 3f;
     }
 
+    bool CercaDelBoss(Vector3 pos)
+    {
+        return Vector3.Distance(pos, Vector3.zero) < 3f;
+    }
+
 
     bool EstaOcupado(Vector3 pos)
     {
@@ -219,10 +248,27 @@ public class GeneradorDeMapa : MonoBehaviour
 
     void GenerarJefe()
     {
+
         Vector3 centro = Vector3.zero;
         Instantiate(boss, centro, Quaternion.identity, contenedorDeObjetos);
 
 
+    }
+
+    void PosicionarPlayer()
+    {
+        int inicioX = -ancho / 2;
+        int inicioY = -alto / 2;
+
+        // Centro horizontal, abajo del todo
+        Vector3 pos = new Vector3(0, inicioY + 1, 0);
+
+        player.position = pos;
+    }
+
+    void PosicionarPlayerReset()
+    {
+        player.position = new Vector3(0, 0, 0);
     }
 
 
